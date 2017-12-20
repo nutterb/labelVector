@@ -1,6 +1,10 @@
 # labelVector
 Label Attributes for Atomic Vectors
 
+[![Build Status](https://travis-ci.org/nutterb/labelVector.png?branch=master)](https://travis-ci.org/nutterb/labelVector)
+
+![](http://cranlogs.r-pkg.org/badges/grand-total/labelVector)
+
 Labels are a common construct in statistical software providing a human readable description of a variable. While variable names are succinct, quick to type, and follow a language's naming conventions, labels may  be more illustrative and may use plain text and spaces. 
 
 R does not provide native support for labels. Some packages, however, have made this feature available.  Most notably, the `Hmisc` package provides labelling methods for a number of different object. Due to design decisions, these methods are not all exported, and so are unavailable for use in package development.  
