@@ -1,0 +1,172 @@
+<!--
+%\VignetteEngine{knitr::knitr}
+%\VignetteIndexEntry{Labelling Vectors}
+-->
+
+```{r setup, echo = FALSE, warning = FALSE}
+library(knitr)
+opts_chunk$set(message = FALSE, warning = FALSE)
+```
+
+Labelling Vectors
+=============================
+
+Many statistical software programs, such as SAS and SPSS, provide support for labelling variables.  Variable labels provide a mechanism to communicate what a variable represents that is not constrained by the naming conventions of the language.  
+
+R does not include native support for labels. Some packages, most notably the `Hmisc` package, have provided this support.  However, design choices have been made in `Hmisc` such that the methods associated with assigning labels are not exported from the package. This makes the use of these functions impractical when extending label support to other packages.
+
+The `labelVector` package provides basic support for labelling atomic vectors and making this support available to other package developers.
+
+It should be noted that labels have not been widely adopted in R programming. Many R operations do not preserve variable attributes, which can result in the loss of labels when a vector is passed through some functions.  Indeed, this may be appropriate, since performing transformations likely alters the meaning of the label. Thus, it is most appropriate to assign labels to completed variables that are unlikely to undergo further transformations.
+
+## Motivation
+
+When generating summaries for reports to be delivered to a non-technical audience, the variable names used in analytical code may not be adequately descriptive to the audience to provide the full context and meaning of the results.  Variable labels are a compromise that may be inserted to clarify meaning to the audience without requiring excessively difficult variable names to be used in code.
+
+In the table below, a linear model estimating gas mileage is given with terms taken from the variable labels.
+
+```{r, echo = FALSE}
+library(labelVector)
+
+mtcars <- 
+  set_label(mtcars,
+            qsec = "Quarter mile time",
+            am = "Automatic / Manual",
+            wt = "Vehicle weight")
+
+fit <- lm(mpg ~ qsec + am + wt, 
+          data = mtcars)
+
+# Create a summary table
+res <- as.data.frame(coef(summary(fit)), 
+                     stringsAsFactors = FALSE)
+res <- cbind(rownames(res), res)
+rownames(res) <- NULL
+names(res) <- c("term", "estimate", "se", "t", "p")
+res$term <- as.character(res$term)
+
+kable(res)
+```
+
+In constrast, the following table replaces these term labels with longer, more human-readable terms that assist in the interpretation of the model.
+
+```{r, echo = FALSE}
+res$term[-1] <- get_label(mtcars, vars = res$term[-1])
+kable(res)
+```
+
+## Setting Labels
+
+Labels are set using the `set_label` function, which applies a length one character string to the `label` attribute of the variable.  The `print` method for `labelled` vectors mimics the print method from the `Hmisc` package.
+
+```{r}
+library(labelVector)
+x <- 1:10
+x <- set_label(x, "some integers")
+
+x
+```
+
+Labels may be retrieved from a labelled vector using the `get_label` function.
+
+```{r}
+get_label(x)
+```
+
+When a vector does not have a label attribute, the object given to `get_label` is deparsed and returned as a string instead.
+
+```{r}
+y <- letters
+
+attr(y, "label") # y has no label attribute
+
+get_label(y)
+```
+
+This behavior comes with a caveat that the string returned will match exactly the content given to `get_label`.
+
+```{r}
+get_label(mtcars$am)
+```
+
+## Working with Data Frames
+
+`labelVector` provides a method to set labels for vectors contained within a data frame without having to use loops, `apply`s, or repetitive code.  The `data.frame` method allows labels to be set with on the pattern of `var = "label"` within the `set_label` call. This method is also suitable for use inside of chained operations made popular by the `magrittr` and `dplyr` packages.
+
+```{r}
+mtcars2 <- 
+  set_label(mtcars,
+            am = "Automatic",
+            mpg = "Miles per gallon",
+            cyl = "Cylinders",
+            qsec = "Quarter mile time")
+```
+
+There is a similar `get_label` method for data frames that retrieves the labels of each variable in the data frame.
+
+```{r}
+get_label(mtcars2)
+```
+
+Or if you desire only to retrieve the labels for a subset of variables, you may use the call
+
+```{r}
+get_label(mtcars2, vars = c("am", "mpg", "cyl", "qsec"))
+```
+
+## Interaction with `Hmisc`
+
+Whereas `labelVector` provides a similar functionality as is provided by the `Hmisc` package, and considering the widespread use of `Hmisc`, consideration is taken for the possibility that `labelVector` and `Hmisc` may need to work in the same environment. This is permissible since `set_label` and `get_label` both work on the `label` attribute of a vector and their names do not conflict with the `label` generic exported by `Hmisc`.
+
+Notice below that the variable label created using the `Hmisc` functions is still retrievable with `get_label`.
+
+```{r}
+library(Hmisc)
+
+var_with_Hmisc_label <- 1:10
+label(var_with_Hmisc_label) <- "This label created with Hmisc"
+
+label(var_with_Hmisc_label)
+get_label(var_with_Hmisc_label)
+
+var_with_Hmisc_label
+```
+
+In a similar vein, variable labels created with `set_label` may be retrieved using the `Hmisc` functions.
+
+```{r}
+var_with_labelVector_label <- 1:10
+var_with_labelVector_label <- 
+  set_label(var_with_labelVector_label, "This label created with labelVector")
+
+get_label(var_with_labelVector_label)
+label(var_with_labelVector_label)
+```
+
+## Example in Use
+
+```{r}
+library(labelVector)
+
+mtcars <- 
+  set_label(mtcars,
+            qsec = "Quarter mile time",
+            am = "Automatic / Manual",
+            wt = "Vehicle weight")
+
+fit <- lm(mpg ~ qsec + am + wt, 
+          data = mtcars)
+
+# Create a summary table
+res <- as.data.frame(coef(summary(fit)), 
+                     stringsAsFactors = FALSE)
+res <- cbind(rownames(res), res)
+rownames(res) <- NULL
+names(res) <- c("term", "estimate", "se", "t", "p")
+res$term <- as.character(res$term)
+
+
+
+res$term[-1] <- get_label(mtcars, vars = res$term[-1])
+kable(res)
+```
