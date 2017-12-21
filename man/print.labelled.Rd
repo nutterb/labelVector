@@ -7,7 +7,7 @@
 \method{print}{labelled}(x, ...)
 }
 \arguments{
-\item{x}{A vector inheritig class \code{labelled}}
+\item{x}{A vector inheriting class \code{labelled}}
 
 \item{...}{Additional arguments to pass to other methods.}
 }

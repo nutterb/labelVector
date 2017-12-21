@@ -4,7 +4,7 @@
 #' @description Labelled vectors are printed with their label appearing above
 #'   the content of the vector.
 #'
-#' @param x A vector inheritig class \code{labelled}
+#' @param x A vector inheriting class \code{labelled}
 #' @param ... Additional arguments to pass to other methods.
 #'
 #' @export
