@@ -1,0 +1,5 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+^.travis.yml$
+^packageBuilding.R$
+^cran-comments.md$

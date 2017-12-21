@@ -5,6 +5,11 @@
 \alias{set_label.default}
 \alias{set_label.data.frame}
 \title{Set the label of an atomic vector}
+\source{
+Frank E Harrell Jr, with contributions from Charles Dupont and many
+others. (2017). Hmisc: Harrell Miscellaneous. R package version 4.0-3.
+https://CRAN.R-project.org/package=Hmisc
+}
 \usage{
 set_label(x, ...)
 
