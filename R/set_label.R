@@ -56,7 +56,7 @@ set_label.default <- function(x, label, ...){
 
   structure(x,
             label = label,
-            class = c("labelled", class(x)))
+            class = c("labelled", class(x)[!class(x) %in% "labelled"]))
 }
 
 #' @rdname set_label

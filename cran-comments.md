@@ -4,6 +4,10 @@
 * win-builder devel (2017-09-12 r73242)
 
 ## R CMD check results
+Thank you for providing such a useful review.  I have quoted the package names in 
+the description. I have also added extraction and replacement methods for the 
+labelled class, as well as additional tests to ensure the desired behavior.
+
 This is the initial release of a new package.  This package is necessitated by recent
 changes to the 'Hmisc' package, which no longer exports methods I have been using 
 in the 'redcapAPI' and 'lazyWeave' packages.  I will update those two packages using 
