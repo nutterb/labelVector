@@ -10,6 +10,8 @@
 #'   to retrieve labels.  If \code{NULL}, all labels are returned.
 #'
 #' @seealso \code{\link{set_label}}
+#'
+#' @examples
 #' x <- 1:10
 #' x <- set_label(x, "Integers")
 #'
