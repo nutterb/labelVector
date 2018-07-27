@@ -6,14 +6,16 @@
 \alias{[<-.labelled}
 \title{Extract or Replace Parts of Labelled Vectors}
 \usage{
-\method{[}{labelled}(x, i)
+\method{[}{labelled}(x, i, ...)
 
-\method{[}{labelled}(x, i) <- value
+\method{[}{labelled}(x, i, ...) <- value
 }
 \arguments{
 \item{x}{An atomic vector inheriting the \code{labelled} class.}
 
 \item{i}{The elements to extract.}
+
+\item{...}{Arguments to pass to other methods.}
 
 \item{value}{typically a vector of similar class of length \code{i}}
 }

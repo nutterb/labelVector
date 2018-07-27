@@ -6,6 +6,7 @@
 #' @param x An atomic vector inheriting the \code{labelled} class.
 #' @param i The elements to extract.
 #' @param value typically a vector of similar class of length \code{i}
+#' @param ... Arguments to pass to other methods.
 #' 
 #' @seealso \code{\link{Extract}}
 #' 
@@ -19,7 +20,7 @@
 #' 
 #' @export
 
-`[.labelled` <- function(x, i){
+`[.labelled` <- function(x, i, ...){
   structure(
     unclass(x)[i],
     label = attr(x, "label"),
@@ -30,7 +31,7 @@
 #' @rdname extract_labelled
 #' @export
 
-`[<-.labelled` <- function(x, i, value){
+`[<-.labelled` <- function(x, i, value, ...){
   x_new <- x
   class(x_new) <- class(x_new)[!class(x_new) %in% "labelled"]
   x_new[i] <- value
