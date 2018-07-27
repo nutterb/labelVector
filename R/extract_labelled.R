@@ -22,7 +22,7 @@
 
 `[.labelled` <- function(x, i, ...){
   structure(
-    unclass(x)[i],
+    NextMethod(),
     label = attr(x, "label"),
     class = class(x)
   )
@@ -32,11 +32,12 @@
 #' @export
 
 `[<-.labelled` <- function(x, i, value, ...){
-  x_new <- x
-  class(x_new) <- class(x_new)[!class(x_new) %in% "labelled"]
-  x_new[i] <- value
+  # x_new <- x
+  # class(x_new) <- class(x_new)[!class(x_new) %in% "labelled"]
+  # x_new[i] <- value
   structure(
-    x_new,
+    # x_new,
+    NextMethod(),
     label = attr(x, "label"),
     class = c("labelled", class(x_new))
   )
