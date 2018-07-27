@@ -24,8 +24,7 @@ to retrieve labels.  If \code{NULL}, all labels are returned.}
 Retrieve the label attribute of a labelled vector. If the
   vector has no label, the vector name is returned as a string.
 }
-\seealso{
-\code{\link{set_label}}
+\examples{
 x <- 1:10
 x <- set_label(x, "Integers")
 
@@ -44,4 +43,8 @@ mtcars2 <-
             gear = "Number of gears")
 
 get_label(mtcars2)
+
+}
+\seealso{
+\code{\link{set_label}}
 }
