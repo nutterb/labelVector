@@ -3,7 +3,7 @@ Label Attributes for Atomic Vectors
 
 [![Build Status](https://travis-ci.org/nutterb/labelVector.png?branch=master)](https://travis-ci.org/nutterb/labelVector)
 ![](http://cranlogs.r-pkg.org/badges/grand-total/labelVector)
-[![Coverage Status](https://coveralls.io/repos/github/nutterb/labelVector/badge.svg?branch=master)](https://coveralls.io/github/nutterb/labelVector?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/nutterb/labelVector/badge.svg?branch=master)](https://coveralls.io/github/nutterb/labelVector?branch=master) 
 
 
 Labels are a common construct in statistical software providing a human readable description of a variable. While variable names are succinct, quick to type, and follow a language's naming conventions, labels may  be more illustrative and may use plain text and spaces. 
