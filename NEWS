@@ -1,0 +1,4 @@
+### Version 0.1.0 (28 July 2018)
+
+* Added `is.labelled` and its alias `is_labelled`.
+* Improved method dispatch to better support vectors with multiple classes.

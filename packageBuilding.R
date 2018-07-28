@@ -5,11 +5,10 @@ devtools::check(getwd())
 # devtools::install_local(getwd(), force = TRUE)
 # devtools::release(getwd())
 
-x <- 1:10
-x <- set_label(x, "Integers")
+Record$race[1]
+
+Record$race[c(1, 9, 64, 50, 83)] <- NA
+
+x <- Record$race
+x[c(1, 9, 64, 50, 83)] <- NA
 x
-x <- set_label(x, "Integers")
-x
-x <- set_label(x, "Integers")
-x
-str(x)
