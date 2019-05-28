@@ -8,6 +8,11 @@
 #' @param ... Arguments to pass to other methods.
 #' @param vars A character vector of variable names in \code{x} for which
 #'   to retrieve labels.  If \code{NULL}, all labels are returned.
+#' @param return_vector \code{logical}. When \code{TRUE}, a vector of 
+#'   the variables is returned. Otherwise, a named list mapping 
+#'   variable names to labels is returned.  The named list can be useful
+#'   for restoring labels after various transformations that may 
+#'   drop attributes.
 #'
 #' @seealso \code{\link{set_label}}
 #'
@@ -57,7 +62,7 @@ get_label.default <- function(x, ...){
 #' @rdname get_label
 #' @export
 
-get_label.data.frame <- function(x, vars = NULL, ...){
+get_label.data.frame <- function(x, vars = NULL, ..., return_vector = TRUE){
   if (!inherits(x, "data.frame")){
     stop("`x` must inherit class 'data.frame'")
   }
@@ -94,5 +99,11 @@ get_label.data.frame <- function(x, vars = NULL, ...){
            FUN = get_label.default,
            FUN.VALUE = character(1))
 
-  lbl
+  if (return_vector){
+    lbl
+  } else {
+    lbl <- lapply(lbl, identity)
+    names(lbl) <- vars
+    lbl
+  }
 }
