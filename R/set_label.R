@@ -64,7 +64,7 @@ set_label.default <- function(x, label, ...){
 #' @rdname set_label
 #' @export
 
-set_label.data.frame <- function(x, ..., .dots){
+set_label.data.frame <- function(x, ..., .dots = list()){
 
   if (!inherits(x, "data.frame")){
     stop("`x` must inherit class 'data.frame'")
