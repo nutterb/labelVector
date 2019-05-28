@@ -19,6 +19,12 @@ get_label(x, ...)
 
 \item{vars}{A character vector of variable names in \code{x} for which
 to retrieve labels.  If \code{NULL}, all labels are returned.}
+  
+\item{return_vector}{\code{logical}. When \code{TRUE}, a vector of 
+the variables is returned. Otherwise, a named list mapping 
+variable names to labels is returned.  The named list can be useful
+for restoring labels after various transformations that may 
+drop attributes.}
 }
 \description{
 Retrieve the label attribute of a labelled vector. If the
