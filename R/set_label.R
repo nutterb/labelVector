@@ -13,6 +13,8 @@
 #' @param ... For the default method, arguments to pass to other methods.
 #'   For the \code{data.frame} method, key-pairs of the pattern
 #'   \code{variable = 'label'}.
+#' @param .dots, for data frames, a named list of key-pairs mapping the 
+#'   variable name to the label.
 #'
 #' @seealso \code{\link{get_label}}
 #'
@@ -49,6 +51,10 @@ set_label.default <- function(x, label, ...){
   if (!is.atomic(x)){
     stop("`x` must be an atomic vector")
   }
+  
+  if (is.null(x)){
+    stop("labels may not be added to `NULL` objects.") 
+  }
 
   if (!is.character(label) | length(label) != 1){
     stop("`label` must be a length 1 character string")
@@ -62,13 +68,17 @@ set_label.default <- function(x, label, ...){
 #' @rdname set_label
 #' @export
 
-set_label.data.frame <- function(x, ...){
+set_label.data.frame <- function(x, ..., .dots = list()){
 
   if (!inherits(x, "data.frame")){
     stop("`x` must inherit class 'data.frame'")
   }
 
-  lbl <- list(...)
+  if (length(.dots) && is.null(names(.dots))){
+    stop("`.dots` must be a named list")  
+  }
+  
+  lbl <- c(list(...), .dots)
 
   vars <- names(lbl)
 

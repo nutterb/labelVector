@@ -15,7 +15,7 @@ set_label(x, ...)
 
 \method{set_label}{default}(x, label, ...)
 
-\method{set_label}{data.frame}(x, ...)
+\method{set_label}{data.frame}(x, ..., .dots = list())
 }
 \arguments{
 \item{x}{An atomic vector}
@@ -26,6 +26,9 @@ For the \code{data.frame} method, key-pairs of the pattern
 
 \item{label}{\code{character(1)}, A character string denoting the label
 to assign to the variable.}
+
+\item{.dots, }{for data frames, a named list of key-pairs mapping the 
+variable name to the label.}
 }
 \description{
 Variable labels are a common construct in statistical
