@@ -3,7 +3,6 @@
 \name{is_labelled}
 \alias{is_labelled}
 \alias{is.labelled}
-\alias{is_labelled}
 \title{Evaluate if a vector is labelled}
 \usage{
 is.labelled(x)

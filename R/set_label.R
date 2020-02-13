@@ -51,6 +51,10 @@ set_label.default <- function(x, label, ...){
   if (!is.atomic(x)){
     stop("`x` must be an atomic vector")
   }
+  
+  if (is.null(x)){
+    stop("labels may not be added to `NULL` objects.") 
+  }
 
   if (!is.character(label) | length(label) != 1){
     stop("`label` must be a length 1 character string")

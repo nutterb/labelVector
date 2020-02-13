@@ -10,7 +10,8 @@ get_label(x, ...)
 
 \method{get_label}{default}(x, ...)
 
-\method{get_label}{data.frame}(x, vars = NULL, ...)
+\method{get_label}{data.frame}(x, vars = NULL, ...,
+  return_vector = TRUE)
 }
 \arguments{
 \item{x}{An atomic vector.}
@@ -19,7 +20,7 @@ get_label(x, ...)
 
 \item{vars}{A character vector of variable names in \code{x} for which
 to retrieve labels.  If \code{NULL}, all labels are returned.}
-  
+
 \item{return_vector}{\code{logical}. When \code{TRUE}, a vector of 
 the variables is returned. Otherwise, a named list mapping 
 variable names to labels is returned.  The named list can be useful
