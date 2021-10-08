@@ -10,8 +10,7 @@ get_label(x, ...)
 
 \method{get_label}{default}(x, ...)
 
-\method{get_label}{data.frame}(x, vars = NULL, ...,
-  return_vector = TRUE)
+\method{get_label}{data.frame}(x, vars = NULL, ..., return_vector = TRUE)
 }
 \arguments{
 \item{x}{An atomic vector.}

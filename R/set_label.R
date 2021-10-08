@@ -78,8 +78,14 @@ set_label.data.frame <- function(x, ..., .dots = list()){
     stop("`.dots` must be a named list")  
   }
   
-  lbl <- c(list(...), .dots)
-
+  dot_args <- list(...)
+  
+  if (length(dot_args) && is.null(names(dot_args))){
+    stop("arguments passed in `...` must be a named")
+  }
+  
+  lbl <- c(dot_args, .dots)
+  
   vars <- names(lbl)
 
   not_in_data <- vars[!vars %in% names(x)]

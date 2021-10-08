@@ -1,6 +1,6 @@
 Package: labelVector
 Title: Label Attributes for Atomic Vectors
-Version: 0.1.1
+Version: 0.1.2
 Authors@R: person("Benjamin", "Nutter", , "benjamin.nutter@gmail.com", role = c("aut", "cre"))
 Description: Labels are a common construct in statistical software providing a 
   human readable description of a variable. While variable names are succinct,
@@ -19,6 +19,5 @@ Suggests:
   knitr,
   testthat
 License: MIT + file LICENSE
-LazyData: true
-RoxygenNote: 6.1.1
+RoxygenNote: 7.1.2
 VignetteBuilder: knitr

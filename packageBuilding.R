@@ -1,14 +1,16 @@
 devtools::document(getwd())
 devtools::test(getwd())
 devtools::check(getwd())
-# devtools::build_win(getwd())
+devtools::check_win_release(getwd())
+devtools::check_win_devel(getwd())
 # devtools::install_local(getwd(), force = TRUE)
 # devtools::release(getwd())
 
-Record$race[1]
+rev_dep_path <- "C:/Users/benja/Documents/GitHub/RevDepCheck"
+if (file.exists(rev_dep_path)){
+  devtools::build(".", path = "C:/Users/benja/Documents/GitHub/RevDepCheck")
+  tools::check_packages_in_dir(rev_dep_path, 
+                               reverse = TRUE)
+}
 
-Record$race[c(1, 9, 64, 50, 83)] <- NA
 
-x <- Record$race
-x[c(1, 9, 64, 50, 83)] <- NA
-x
